@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * File-based storage module for Tokinar
  *
@@ -15,10 +17,14 @@ const fs = require("fs");
  * relatively resolved from the root of the project.
  */
 let storage = function (storageDir) {
-  this.storageDir = path.resolve(process.env.PWD, storageDir || "storage");
+  var baseDir = process.env.PWD;
+  if (baseDir === undefined) {
+    baseDir = ''
+  }
+  this.storageDir = path.resolve(baseDir, storageDir || "storage");
 
   if (!fs.existsSync(this.storageDir)) {
-    fs.mkdirSync(this.storageDir, 0700);
+    fs.mkdirSync(this.storageDir, '0700');
   }
 
   return this;
@@ -70,7 +76,7 @@ storage.prototype.exists = function (collection, key) {
  * @todo Return Promise and make method async
  */
 storage.prototype.create_collection = function (collection) {
-  fs.mkdirSync(this.collection_path(collection), 0700);
+  fs.mkdirSync(this.collection_path(collection), '0700');
 };
 
 /**
@@ -108,7 +114,7 @@ storage.prototype.put = function (collection, key, data) {
   }
   fs.writeFileSync(this.key_path(collection, key), JSON.stringify(data), {
     encoding: "utf8",
-    mode: 0600
+    mode: '0600'
   });
 };
 

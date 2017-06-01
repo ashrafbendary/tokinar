@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Homepage handler for Tokinar
  */

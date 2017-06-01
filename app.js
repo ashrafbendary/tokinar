@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Tokinar main server script
  *

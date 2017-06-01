@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Webinar handler for Tokinar
  */
